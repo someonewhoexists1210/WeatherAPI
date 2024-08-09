@@ -1,3 +1,1 @@
-fetch('/api/weather?location=Jaipur')
-.then(response => response.json())
-.then(data => console.log(data));
+window.location.href = '/api/today?location=Jaipur';
