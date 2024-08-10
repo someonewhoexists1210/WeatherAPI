@@ -15,7 +15,8 @@ def today_view(request):
             return render(request, 'error.html', {'errorCode': data['errorCode'], 'error': data['message']})
         return render(request, 'error.html', {'errorCode': 500, 'error': 'Server Error'})
         
-    return render(request, 'today.html', {'data': data})
+    icon_name = data['currentConditions']['icon']
+    return render(request, 'today.html', {'data': data, 'icon': icon_name})
 
 def day_view(request):
     location = request.GET.get('location')
