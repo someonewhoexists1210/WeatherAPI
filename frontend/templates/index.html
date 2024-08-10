@@ -11,18 +11,22 @@
     <p>Thank you for visiting our website!</p>
     <h3 id='mess'></h3>
 
-    <form id="weatherForm" action='/api/daily' method="GET" onsubmit='disableHiddenFields()'>
-        <label for="viewSelect">Select View:</label>
-        <select name="view" id="viewSelect" onchange="updateFormFields()">
-            <option value="day">Day</option>
-            <option value="range">Range</option>
-            <option value="next">Next</option>
-            <option value="last">Last</option>
-            <option value="tty">TTY</option>
-            <option value="to_date">To Date</option>
-        </select>
+    <form id="weatherForm" action='/api/weather' method="GET">
+        <div id='viewInput'>
+            <label for="viewSelect">Select View:</label>
+            <select name="view" id="viewSelect" onchange="updateFormFields()">
+                <option value="day">Day</option>
+                <option value="range">Range</option>
+                <option value="next">Next</option>
+                <option value="last">Last</option>
+                <option value="tty">TTY</option>
+                <option value="to_date">To Date</option>
+            </select>
+        </div>
         
-        <input type="text" name="location" placeholder="Enter city name" required>
+        <div id="locationInput">
+            <input type="text" name="location" placeholder="Enter city name" required>
+        </div>
         
         <!-- Date Inputs -->
         <div id="dateInput">
