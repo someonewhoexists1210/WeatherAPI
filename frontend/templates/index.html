@@ -11,9 +11,9 @@
     <p>Thank you for visiting our website!</p>
     <h3 id='mess'></h3>
 
-    <form id="weatherForm" action='/api/weather'>
-        <select name="view" id="viewSelect" onchange="updateForm()">
-            <option value="placeholder">Type of Response</option>
+    <form id="weatherForm" action='/api/daily' method="GET" onsubmit='disableHiddenFields()'>
+        <label for="viewSelect">Select View:</label>
+        <select name="view" id="viewSelect" onchange="updateFormFields()">
             <option value="day">Day</option>
             <option value="range">Range</option>
             <option value="next">Next</option>
@@ -21,32 +21,65 @@
             <option value="tty">TTY</option>
             <option value="to_date">To Date</option>
         </select>
+        
         <input type="text" name="location" placeholder="Enter city name" required>
         
-        <!-- Date Input (Visible for 'day', 'range', 'to_date') -->
-        <input type='date' name='date1' id="date1Input" style="display: none;">
+        <!-- Date Inputs -->
+        <div id="dateInput">
+            <input type="date" name="date" placeholder="Select Date">
+        </div>
+    
+        <!-- Date Range Inputs -->
+        <div id="dateRangeInputs" style="display: none;">
+            <input type="date" name="date1" placeholder="Start Date">
+            <input type="date" name="date2" placeholder="End Date">
+        </div>
         
-        <!-- Second Date Input (Visible for 'range') -->
-        <input type='date' name='date2' id="date2Input" style="display: none;">
+        <!-- Number Input -->
+        <div id="numberInput" style="display: none;">
+            <input type="number" name="number" placeholder="Enter number" min="1">
+        </div>
         
-        <!-- Number Input (Visible for 'next', 'last') -->
-        <input type='number' name='days' id="daysInput" placeholder="Enter number of days" style="display: none;">
+        <!-- Key Select Dropdown -->
+        <div id="keyInput" style="display: none;">
+            <select name="key" id="keyInputselect" onchange='updateFormFields()'>
+                <option value="days">Days</option>
+                <option value="weekday">Weekday</option>
+                <option value="weekend">Weekend</option>
+            </select>
+        </div>
 
-        <!-- Number Input (Visible for 'tty') -->
-        <input name='key'></input>
-        <select name='key'>
-            <option value='today'>Today</option>
-            <option value='tomorrow'>Tomorrow</option>
-            <option value='yesterday'>Yesterday</option>
-            <option value='year'>Year</option>
-            <option value='month'>Month</option>
-            <option value='weekend'>Weekend</option>
-        </select>
+        <!-- Key input tty-->
+        <div id="keyInputtty" style="display: none;">
+            <select name="key">
+                <option value="today">Today</option>
+                <option value="tomorrow">Tomorrow</option>
+                <option value="yesterday">Yesterday</option>
+            </select>
+        </div>
 
+        <!-- Key input to_date-->
+        <div id="keyInputto" style="display: none;">
+            <select name="key">
+                <option value="monthtodate">Month To Date</option>
+                <option value="yeartodate">Year To Date</option>
+            </select>
+        </div>
 
-        
+        <!-- Weekday -->
+        <div id="weekdayInput" style="display: none;">
+            <select name="key">
+                <option value="monday">Monday</option>
+                <option value="tuesday">Tuesday</option>
+                <option value="wednesday">Wednesday</option>
+                <option value="thursday">Thursday</option>
+                <option value="friday">Friday</option>
+            </select>
+        </div>
+
         <button type="submit">Get Weather</button>
     </form>
+    
     
 </body>
 </html>
