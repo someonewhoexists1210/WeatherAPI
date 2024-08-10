@@ -70,9 +70,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         if (filled) {
             event.target.submit();
+            enableAllFields();
         } else{
             alert("Please fill in all inputs")
         }
     });
 });
 
+function enableAllFields() {
+    const fields = document.querySelectorAll('#weatherForm input, #weatherForm select');
+    fields.forEach(field => {
+        field.disabled = false;
+    });
+}
