@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <title>Weather Forecast</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/result.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Weather Forecast</h1>
+        <h2>{{ data.resolvedAddress }}</h2>
+        <div class="weather-info">
+            <h3>{{ data.days.0.datetime }}</h3>
+            <img src="{% static 'icons/' %}{{ icon }}.png" alt="Weather Icon" class="weather-icon">
+            <p>Temperature: {{ data.currentConditions.temp }}°C</p>
+            <p>Humidity: {{ data.currentConditions.humidity }}%</p>
+            <p>Wind Speed: {{ data.currentConditions.windspeed }} km/h</p>
+            <p>Weather Description: {{ data.currentConditions.conditions }}</p>
+        </div>
+    </div>
+</body>
+</html>

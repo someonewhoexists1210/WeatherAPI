@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weather Forecast</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            padding: 8px;
+            border: 1px solid black;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <h1>Weather Forecast for {{ key }} {{ data.days|length|add:"-1" }} days in {{ data.address }}</h1>
+    
+    <table>
+        <tr>
+            <th>Date</th>
+            <th>Temperature</th>
+            <th>Humidity</th>
+            <th>Wind Speed</th>
+            <th>Weather Description</th>
+        </tr>
+        {% for day in data.days %}
+        {% if data.days.0 != day %}
+        <tr>
+            <td>{{ day.datetime }}</td>
+            <td>{{ day.temp }}°C</td>
+            <td>{{ day.humidity }}%</td>
+            <td>{{ day.windspeed }} km/h</td>
+            <td>{{ day.description }}</td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+    </table>
+</body>
+</html>
