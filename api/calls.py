@@ -12,6 +12,8 @@ api_key = os.getenv('API_KEY').upper()
 def today(location):
     url = main_url + f'{location}/today?&unitGroup=metric&key={api_key}'
     response = requests.get(url)
+    if not response.ok:
+        return {'errorCode': response.status_code, 'message': response.text.split(':')[-1]}
     return response.json()
 
 def daily(location, date):
@@ -19,5 +21,10 @@ def daily(location, date):
     new_date_obj = date_obj + timedelta(days=7)
     new_date_str = new_date_obj.strftime('%Y-%m-%d')    
     url = main_url + f'{location}/{date}/{new_date_str}?include=days&unitGroup=metric&key={api_key}'
+    response = requests.get(url)
+    return response.json()
+
+def day(location, date):
+    url = main_url + f'{location}/{date}?&unitGroup=metric&key={api_key}'
     response = requests.get(url)
     return response.json()
