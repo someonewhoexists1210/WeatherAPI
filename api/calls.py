@@ -16,11 +16,8 @@ def today(location):
         return {'errorCode': response.status_code, 'message': response.text.split(':')[-1]}
     return response.json()
 
-def xrange(location, startDate, days):
-    date_obj = datetime.strptime(startDate, '%Y-%m-%d')
-    new_date_obj = date_obj + timedelta(days=days-1)
-    new_date_str = new_date_obj.strftime('%Y-%m-%d')    
-    url = main_url + f'{location}/{startDate}/{new_date_str}?include=days&unitGroup=metric&lang=en&key={api_key}'
+def xrange(location, startDate, endDate):
+    url = main_url + f'{location}/{startDate}/{endDate}?include=days&unitGroup=metric&lang=en&key={api_key}'
     response = requests.get(url)
     if not response.ok:
         return {'errorCode': response.status_code, 'message': response.text.split(':')[-1]}

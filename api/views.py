@@ -5,18 +5,20 @@ from .calls import *
 
 # Create your views here.
 def weather(request):
-    return today_view(request)
+    view = request.GET.get('view')
+    if view == 'day':
+        return day_view(request)
+    if view == 'range':
+        return range_view(request)
+    if view == 'next':
+        return next_view(request)
+    if view == 'last':
+        return last_view(request)
+    if view == 'tty':
+        return tty_view(request)
+    if view == 'to_date':
+        return to_date_view(request)
 
-def today_view(request):
-    location = request.GET.get('location')
-    data = today(location)
-    if 'errorCode' in data:        
-        if 400 <= data['errorCode'] < 500:
-            return render(request, 'error.html', {'errorCode': data['errorCode'], 'error': data['message']})
-        return render(request, 'error.html', {'errorCode': 500, 'error': 'Server Error'})
-        
-    icon_name = data['currentConditions']['icon']
-    return render(request, 'today.html', {'data': data, 'icon': icon_name})
 
 def day_view(request):
     location = request.GET.get('location')
@@ -31,8 +33,9 @@ def day_view(request):
 
 def range_view(request):
     location = request.GET.get('location')
-    date1 = request.GET.get('date1')
-    data = xrange(location, date1)
+    date1 = request.GET.get('date')
+    date2 = request.GET.get('date2')
+    data = xrange(location, date1, date2)
 
     return render(request, 'daily.html', {'data': data})
 
