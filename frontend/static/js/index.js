@@ -1,9 +1,8 @@
 function updateFormFields() {
     var view = document.getElementById("viewSelect").value;
     var nl = document.getElementById("keyInputselect").value;
-    console.log(nl)
+    console.log(nl);
 
-    
     document.getElementById("dateInput").style.display = 'none';
     document.getElementById("dateRangeInputs").style.display = 'none';
     document.getElementById("numberInput").style.display = 'none';
@@ -12,12 +11,11 @@ function updateFormFields() {
     document.getElementById("keyInputto").style.display = 'none';
     document.getElementById("weekdayInput").style.display = 'none';
 
-
     if (view === "day") {
         document.getElementById("dateInput").style.display = 'block';
-    } else if (view === "tty"){
+    } else if (view === "tty") {
         document.getElementById("keyInputtty").style.display = 'block';
-    }else if (view === "range") {
+    } else if (view === "range") {
         document.getElementById("dateRangeInputs").style.display = 'block';
     } else if (view === "next" || view === "last") {
         document.getElementById("numberInput").style.display = 'block';
@@ -33,7 +31,7 @@ function updateFormFields() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('weatherForm').addEventListener('submit',  (event) => {
+    document.getElementById('weatherForm').addEventListener('submit', (event) => {
         event.preventDefault();
         let filled = true;
         const fields = document.querySelectorAll('#weatherForm input, #weatherForm select');
@@ -71,8 +69,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (filled) {
             event.target.submit();
             enableAllFields();
-        } else{
-            alert("Please fill in all inputs")
+        } else {
+            alert("Please fill in all inputs");
         }
     });
 });
