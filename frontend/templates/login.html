@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Login Page</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    {% comment %} <link rel="stylesheet" type="text/css" href="styles.css"> {% endcomment %}
 </head>
 <body>
     <h1>Login</h1>
@@ -11,5 +11,7 @@
         {{ form.as_p }}
         <button type="submit">Login</button>
     </form>
+
+    <button onclick="window.location.href = '/user/register';">Register</button>
 </body>
 </html>
