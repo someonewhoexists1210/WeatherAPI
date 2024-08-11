@@ -10,6 +10,7 @@ def register_view(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
+            
             return redirect('home')
     else:
         form = RegisterForm()
@@ -33,7 +34,4 @@ def login_view(request):
 
 def logout_view(request):
     logout(request)
-    return redirect('home')
-
-def home(request):
-    return render(request, 'home.html')
+    return redirect('/user/login/')
