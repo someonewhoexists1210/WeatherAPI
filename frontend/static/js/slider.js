@@ -1,20 +1,24 @@
-const cardContainer = document.getElementById('cardContainer');
-let currentSlide = 0;
+document.addEventListener('DOMContentLoaded', function() {
+	const slides = document.querySelectorAll('.weather-info');
+	const prevButton = document.getElementById('prevSlide');
+	const nextButton = document.getElementById('nextSlide');
+	let currentSlide = 0;
 
-function updateSlide() {
-    cardContainer.style.transform = `translateX(-${currentSlide * 320}px)`;
-}
+	function showSlide(index) {
+		slides.forEach((slide, i) => {
+			slide.style.display = (i === index) ? 'block' : 'none';
+		});
+	}
 
-function prevSlide() {
-    if (currentSlide > 0) {
-        currentSlide--;
-        updateSlide();
-    }
-}
+	prevButton.addEventListener('click', function() {
+		currentSlide = (currentSlide > 0) ? currentSlide - 1 : slides.length - 1;
+		showSlide(currentSlide);
+	});
 
-function nextSlide() {
-    if (currentSlide < cardContainer.children.length - 1) {
-        currentSlide++;
-        updateSlide();
-    }
-}
+	nextButton.addEventListener('click', function() {
+		currentSlide = (currentSlide < slides.length - 1) ? currentSlide + 1 : 0;
+		showSlide(currentSlide);
+	});
+
+	showSlide(currentSlide);
+});

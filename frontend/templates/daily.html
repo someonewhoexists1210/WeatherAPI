@@ -1,32 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+{% load static %}
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Forecast</title>
-    <link rel="stylesheet" href="{% static 'css/daily.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/result.css' %}">
+    <script src="{% static 'js/slider.js' %}"></script>
 </head>
 <body>
+    <button id='prevSlide'><</button>
     <div class="container">
-        <h1>Weather Forecast for {{ key }} {{ data.days|length|add:"-1" }} days in {{ data.address }}</h1>
-        <div class="card-container" id="cardContainer">
-            {% for day in data.days %}
-            {% if data.days.0 != day %}
-            <div class="card">
-                <h2>{{ day.datetime }}</h2>
+        <h1>Weather Forecast</h1>
+        <h2>{{ data.resolvedAddress }}</h2>
+        {% for day in data.days%}
+            <div class="weather-info" style='display: none;'>
+                <h3>{{ day.datetime }}</h3>
+                <img src="{% static 'icons/' %}{{ day.icon }}.png" alt="Weather Icon" class="weather-icon">
                 <p>Temperature: {{ day.temp }}°C</p>
                 <p>Humidity: {{ day.humidity }}%</p>
                 <p>Wind Speed: {{ day.windspeed }} km/h</p>
-                <p>Description: {{ day.description }}</p>
+                <p>Weather Description: {{ day.conditions }}</p>
             </div>
-            {% endif %}
-            {% endfor %}
-        </div>
-        <div class="buttons">
-            <button onclick="prevSlide()">Previous</button>
-            <button onclick="nextSlide()">Next</button>
-        </div>
+        {% endfor %}
     </div>
-    <script src="{% static 'js/slider.js' %}"></script>
+    <button id'nextSlide'>></button>
 </body>
 </html>

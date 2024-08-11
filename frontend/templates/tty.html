@@ -11,7 +11,7 @@
         <h2>{{ data.resolvedAddress }}</h2>
         <div class="weather-info">
             <h3>{{ data.days.0.datetime }}</h3>
-            <img src="{% static 'icons/' %}{{ icon }}.png" alt="Weather Icon" class="weather-icon">
+            <img src="{% static 'icons/' %}{{ data.days.0.icon }}.png" alt="Weather Icon" class="weather-icon">
             <p>Temperature: {{ data.currentConditions.temp }}°C</p>
             <p>Humidity: {{ data.currentConditions.humidity }}%</p>
             <p>Wind Speed: {{ data.currentConditions.windspeed }} km/h</p>

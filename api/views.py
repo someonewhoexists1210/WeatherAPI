@@ -44,7 +44,9 @@ def next_view(request):
     key = request.GET.get('key')
     number = int(request.GET.get('number', 1))
     data = next(location, key, number)
-    return dynamic_view(request, data, key)
+    if key == 'hours':
+        return render(request, 'hourly.html', {'data': data, key: 'hours'})
+    return dynamic_view(request, data, 'next', key)
 
 
 def last_view(request):
@@ -52,14 +54,14 @@ def last_view(request):
     key = request.GET.get('key')
     number = int(request.GET.get('number', 1))
     data = last(location, key, number)
-    return dynamic_view(request, data, key)
+    return dynamic_view(request, data, 'last', key)
 
 
 def tty_view(request):
     location = request.GET.get('location')
     key = request.GET.get('key')
     data = tty(location, key)
-    return dynamic_view(request, data, key)
+    return render(request, 'tty.html', {'data': data})
 
 
 def to_date_view(request):
@@ -67,12 +69,12 @@ def to_date_view(request):
     key = request.GET.get('key')
     data = to_date(location, key)
     
-    return dynamic_view(request, data, key)
+    return dynamic_view(request, data, 'to_date', key)
 
-def dynamic_view(request, data, key):
+def dynamic_view(request, data, view, key):
     if 'errorCode' in data:        
         if 400 <= data['errorCode'] < 500:
             return render(request, 'error.html', {'errorCode': data['errorCode'], 'error': data['message']})
         return render(request, 'error.html', {'errorCode': 500, 'error': 'Server Error'})
         
-    return render(request, 'daily.html', {'data': data, 'key': key})
+    return render(request, 'daily.html', {'data': data, 'view': view, 'key': key})
