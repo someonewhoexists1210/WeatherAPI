@@ -1,13 +1,12 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
 {% load static %}
-<html>
-<head>
-    <title>Welcome to Weather App</title>
-    <script src="{% static 'js/index.js' %}"></script>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
-</head>
-<body>
-    <h1>Welcome to Weather App</h1>
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+<script src="{% static 'js/index.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<h1>Welcome to Weather App</h1>
     <p>Thank you for visiting our website!</p>
     <h3 id='mess'></h3>
 
@@ -85,5 +84,4 @@
 
         <button type="submit">Get Weather</button>
     </form>
-</body>
-</html>
+{% endblock %}

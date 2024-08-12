@@ -1,12 +1,11 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
 {% load static %}
-<html>
-<head>
-    <title>Weather Forecast</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/result.css' %}">
-    <script src="{% static 'js/slider.js' %}"></script>
-</head>
-<body>
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/result.css' %}">
+<script src="{% static 'js/slider.js' %}"></script>
+{% endblock %}
+
+{% block content %}
     <div class="header">
         <h1>Weather Forecast</h1>
         <h2>{{ data.resolvedAddress }}</h2>
@@ -25,5 +24,4 @@
         {% endfor %}
     </div>
     <button id='nextSlide'>></button>
-</body>
-</html>
+{% endblock %}

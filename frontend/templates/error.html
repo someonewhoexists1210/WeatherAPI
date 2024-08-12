@@ -1,13 +1,11 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
 {% load static %}
-<html>
-<head>
-    <title>Error</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/error.css' %}">
-</head>
-<body>
-    <h1>Oops! Something went wrong.</h1>
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/error.css' %}">
+{% endblock %}
+
+{% block content %}
+<h1>Oops! Something went wrong.</h1>
     <p>We apologize for the inconvenience. Please try again later.</p>
     <p><b>{{ errorCode }} {{ error}}</b></p>
-</body>
-</html>
+{% endblock %}

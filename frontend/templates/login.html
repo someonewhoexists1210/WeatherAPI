@@ -1,18 +1,17 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
 {% load static %}
-<html>
-<head>
-    <title>Login Page</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/auth.css' %}">
-</head>
-<body>
-    <h1>Login</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Login</button>
-    </form>
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/auth.css' %}">
+{% endblock %}
 
-    <button class="register-button" onclick="window.location.href = '/user/register';">Register</button>
-</body>
-</html>
+{% block content %}
+<h1>Login</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Login</button>
+</form>
+
+<button class="register-button" onclick="window.location.href = '/user/register';">Register</button>
+{% endblock %}

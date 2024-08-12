@@ -5,6 +5,9 @@ body {
     background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
     margin: 0;
     padding: 0;
+    
+}
+main {
     display: flex;
     justify-content: center;
     align-items: center;
