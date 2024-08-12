@@ -1,11 +1,12 @@
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
+from api.decorators import rate_limited
 from .calls import *
 from django.shortcuts import render
 from geopy.geocoders import Nominatim
 
 
-# Create your views here.
+@rate_limited
 def weather(request):
     view = request.GET.get('view')
     if view == 'day':
