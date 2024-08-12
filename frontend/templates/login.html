@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+{% load static %}
 <html>
 <head>
     <title>Login Page</title>
-    {% comment %} <link rel="stylesheet" type="text/css" href="styles.css"> {% endcomment %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/auth.css' %}">
 </head>
 <body>
     <h1>Login</h1>
@@ -12,6 +13,6 @@
         <button type="submit">Login</button>
     </form>
 
-    <button onclick="window.location.href = '/user/register';">Register</button>
+    <button class="register-button" onclick="window.location.href = '/user/register';">Register</button>
 </body>
 </html>

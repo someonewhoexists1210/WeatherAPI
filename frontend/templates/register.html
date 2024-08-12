@@ -3,16 +3,56 @@
 <html>
 <head>
     <title>Registration Page</title>
-    {% comment %} <link rel="stylesheet" type="text/css" href="styles.css"> {% endcomment %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/auth.css' %}">
     <script src="{% static 'js/register.js' %}"></script>
 </head>
 <body>
-    <h1>Registration Form</h1>
+
+    <div class="header">
+        <h1 class="form-title">Registration Form</h1>
+    </div>
     
-    <form method="post">
+    <form method="post" class="auth-form">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Register</button>
+        <div class="errors">
+            {% for error in form.username.errors %}
+                <p class="error"><b>{{ error }}</b></p>
+            {% endfor %}
+            {% for error in form.password1.errors %}
+                <p class="error"><b>{{ error }}</b></p>
+            {% endfor %}
+            {% for error in form.password2.errors %}
+                <p class="error"><b>{{ error }}</b></p>
+            {% endfor %}
+        </div>
+        
+        <div class="form-field">
+            {{ form.username.label_tag }}
+            {{ form.username }}
+        </div>
+
+        <div class="form-field">
+            {{ form.password1.label_tag }}
+            {{ form.password1 }}
+            {% if form.password1.help_text %}
+                <p class="help-text">{{ form.password1.help_text }}</p>
+            {% endif %}
+        </div>
+
+        <div class="form-field">
+            {{ form.password2.label_tag }}
+            {{ form.password2 }}
+            {% if form.password2.help_text %}
+                <p class="help-text">{{ form.password2.help_text }}</p>
+            {% endif %}
+        </div>
+        
+        <!-- Hidden fields -->
+        {{ form.latitude }}
+        {{ form.longitude }}
+        {{ form.city }}
+        
+        <button type="submit" class="auth-button">Register</button>
     </form>
     
 </body>
