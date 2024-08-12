@@ -9,9 +9,8 @@
 <div class="profile-container">
     <h1>Profile</h1>
     <p>Username: {{ user.username }}</p>
-    <p>Email: {{ user.email }}</p>
-    <p>Latitude: {{ user.latitude }}</p>
-    <p>Longitude: {{ user.longitude }}</p>
+    <p>Latitude: <b id='latitude'>{{ user.latitude }}</b></p>
+    <p>Longitude: <b id='longitude'>{{ user.longitude }}</b></p>
     <p>City: <b id='city'>{{ user.city }}</b></p>
 </div>
 {% endblock %}

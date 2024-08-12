@@ -15,6 +15,16 @@
             <li><a href="/user/profile/{{request.user.id}}/">Profile</a></li>
         </ul>
     </nav>
+    {% if data.alerts %}
+        <h2>Weather Alerts:</h2>
+        <ul>
+            {% for alert in data.alerts %}
+                <li>
+                    <strong>{{ alert.headline }}</strong>: {{ alert.description }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
 
     <main>
     {% block content %}
