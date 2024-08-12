@@ -5,14 +5,12 @@
 {% endblock %}
 
 {% block content %}
+
 <h1>Login</h1>
 
 <form method="post">
     <div class="errors">
-        {% for error in form.username.errors %}
-            <p class="error"><b>{{ error }}</b></p>
-        {% endfor %}
-        {% for error in form.password.errors %}
+        {% for error in form.non_field_errors %}
             <p class="error"><b>{{ error }}</b></p>
         {% endfor %}
     </div>
@@ -29,5 +27,8 @@
     <button type="submit">Login</button>
 </form>
 
+{% if form.is_valid %}
+    {{ form.errors }}
+{% endif %}
 <button class="register-button" onclick="window.location.href = '/user/register';">Register</button>
 {% endblock %}
