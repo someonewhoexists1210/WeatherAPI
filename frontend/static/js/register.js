@@ -8,6 +8,9 @@ function getLocation() {
 function showPosition(position) {
     document.getElementById('id_latitude').value = position.coords.latitude;
     document.getElementById('id_longitude').value = position.coords.longitude;
+    fetch('/api/get_city?lat=' + position.coords.latitude + '&lon=' + position.coords.longitude)
+    .then(response => response.json())
+    .then(data => document.getElementById('id_city').value = data.city);
 }
 function showError(error) {
     switch(error.code) {

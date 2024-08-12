@@ -26,7 +26,7 @@
         
         <div id="locationInput">
             <label for="location">Location (You can enter city name or coordinates):</label>
-            <input type="text" name="location" placeholder="{{ request.user.latidude }},{{ request.user.longitude }}" required></input>
+            <input type="text" name="location" placeholder="Enter city name" value="{{ request.user.city }}"required></input>
             <button type="button" onclick="getLocation()">Use My Location</button>
         </div>
         

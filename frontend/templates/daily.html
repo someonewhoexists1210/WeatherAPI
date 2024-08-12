@@ -7,8 +7,10 @@
     <script src="{% static 'js/slider.js' %}"></script>
 </head>
 <body>
-    <h1>Weather Forecast</h1>
-    <h2>{{ data.resolvedAddress }}</h2>
+    <div class="header">
+        <h1>Weather Forecast</h1>
+        <h2>{{ data.resolvedAddress }}</h2>
+    </div>
     <button id='prevSlide'><</button>
     <div class="container">
         {% for day in data.days%}
@@ -22,6 +24,6 @@
             </div>
         {% endfor %}
     </div>
-    <button id'nextSlide'>></button>
+    <button id='nextSlide'>></button>
 </body>
 </html>

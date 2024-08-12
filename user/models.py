@@ -4,4 +4,5 @@ from django.db import models
 class CustomUser(AbstractUser):
     latitude = models.FloatField(null=True, blank=True)
     longitude = models.FloatField(null=True, blank=True)
+    city = models.CharField(max_length=100, null=True, blank=True)
     objects = UserManager()

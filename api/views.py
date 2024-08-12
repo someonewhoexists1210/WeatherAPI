@@ -1,6 +1,8 @@
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 from .calls import *
+from django.shortcuts import render
+from geopy.geocoders import Nominatim
 
 
 # Create your views here.
@@ -61,6 +63,7 @@ def tty_view(request):
     location = request.GET.get('location')
     key = request.GET.get('key')
     data = tty(location, key)
+    # return JsonResponse(data)
     return render(request, 'tty.html', {'data': data})
 
 
@@ -78,3 +81,21 @@ def dynamic_view(request, data, view, key):
         return render(request, 'error.html', {'errorCode': 500, 'error': 'Server Error'})
         
     return render(request, 'daily.html', {'data': data, 'view': view, 'key': key})
+
+def get_city_from_coords(lat, lon):
+    geolocator = Nominatim(user_agent="myGeocoder")
+    location = geolocator.reverse((lat, lon), exactly_one=True)
+    address = location.raw['address']
+    city = address.get('city', '')
+    if not city:
+        city = address.get('town', '') or address.get('village', '')
+    return city or "Unknown City"
+
+def get_city(request):
+    lat = request.GET.get('lat')
+    lon = request.GET.get('lon')
+
+    if lat and lon:
+        city = get_city_from_coords(lat, lon)
+        return JsonResponse({'city': city})
+
