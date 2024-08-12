@@ -8,8 +8,24 @@
 <h1>Login</h1>
 
 <form method="post">
+    <div class="errors">
+        {% for error in form.username.errors %}
+            <p class="error"><b>{{ error }}</b></p>
+        {% endfor %}
+        {% for error in form.password.errors %}
+            <p class="error"><b>{{ error }}</b></p>
+        {% endfor %}
+    </div>
     {% csrf_token %}
-    {{ form.as_p }}
+    <div class="form-field">
+        {{ form.username.label_tag }}
+        {{ form.username }}
+    </div>
+
+    <div class="form-field">
+        {{ form.password.label_tag }}
+        {{ form.password }}
+    </div>
     <button type="submit">Login</button>
 </form>
 
