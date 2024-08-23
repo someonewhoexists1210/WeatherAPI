@@ -27,7 +27,9 @@ SECRET_KEY = 'django-insecure-vr%(dki_c+zo8beib52s&eg^opwj3)s34y%f%wm45@ct4-8!39
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['weather.someonewhoexists.hackclub.app']
+
+CSRF_TRUSTED_ORIGINS = ['https://weather.someonewhoexists.hackclub.app']
 
 # Application definition
 
