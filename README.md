@@ -20,6 +20,7 @@ The Weather Forecast Website is a Django-based application that provides weather
 - **Database**: SQLite
 
 ## Usage
+This website is hosted at https://weather.someonewhoexists.hackclub.app/
 
 1. **Accessing Weather Information**
    - Visit the home page to enter a location and get current weather information.
